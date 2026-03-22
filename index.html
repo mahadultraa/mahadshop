@@ -53,7 +53,83 @@
     }
   }
   
-      </style>
+      
+
+  /* === NAVIGATION ANIMATIONS === */
+
+  /* Page transition overlay */
+  #nav-transition-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, rgba(168,85,247,0.18) 0%, rgba(0,0,0,0.55) 100%);
+    opacity: 0;
+    transition: opacity 0.22s ease;
+  }
+  #nav-transition-overlay.flash-in {
+    opacity: 1;
+  }
+
+  /* Link click ripple effect */
+  @keyframes link-ripple {
+    0%   { transform: scale(1);   box-shadow: 0 0 0 0 rgba(168,85,247,0.5); }
+    50%  { transform: scale(0.96); box-shadow: 0 0 0 8px rgba(168,85,247,0); }
+    100% { transform: scale(1);   box-shadow: 0 0 0 0 rgba(168,85,247,0); }
+  }
+  @keyframes link-glow-pulse {
+    0%   { text-shadow: 0 0 0px rgba(168,85,247,0); }
+    40%  { text-shadow: 0 0 14px rgba(168,85,247,0.9); }
+    100% { text-shadow: 0 0 0px rgba(168,85,247,0); }
+  }
+
+  nav a.nav-clicked,
+  footer a.nav-clicked {
+    animation: link-glow-pulse 0.45s ease forwards;
+  }
+
+  /* Subtle hover shimmer on nav links */
+  nav a, footer a {
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+    position: relative;
+  }
+  nav a:hover {
+    text-shadow: 0 0 10px rgba(168,85,247,0.6);
+  }
+  footer a:hover {
+    text-shadow: 0 0 8px rgba(168,85,247,0.5);
+  }
+
+
+  /* === MOBILE FIXES === */
+
+  /* Fix 1: Prevent horizontal scrolling on all screens */
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+  }
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Fix 2: Move floating island to bottom on mobile & tablet */
+  @media (max-width: 1023px) {
+    .fixed.top-4.left-0.right-0.z-50.flex.justify-center.px-4 {
+      top: auto !important;
+      bottom: 1rem !important;
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    /* Add padding to body so content isn't hidden behind bottom island */
+    body {
+      padding-bottom: 80px;
+    }
+  }
+
+  /* Fix 3: Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+  </style>
     </head>
     <body>
       <div id="root"></div>
@@ -79,5 +155,50 @@ Error generating stack: `+s.message+`
 ${e.message}`)}`;window.location.href=l};return b.jsx(Ar,{children:b.jsxs("div",{className:"container mx-auto px-4 py-12",children:[b.jsxs("div",{className:"max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center mb-24",children:[b.jsxs("div",{children:[b.jsx("h1",{className:"text-4xl md:text-5xl font-black mb-4",children:"Get in Touch"}),b.jsx("p",{className:"text-muted-foreground text-lg mb-8",children:"Have a question, business inquiry, or need support? Send us a message and our team will get back to you as soon as possible."}),b.jsxs("div",{className:"space-y-6",children:[b.jsxs("div",{className:"flex items-center gap-4 bg-card/50 p-4 rounded-2xl border border-white/5",children:[b.jsx("div",{className:"w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary",children:b.jsx(UE,{})}),b.jsxs("div",{children:[b.jsx("h4",{className:"font-semibold",children:"Email Us"}),b.jsx("a",{href:"mailto:support@mahad.shop",className:"text-muted-foreground hover:text-primary transition-colors",children:"support@mahad.shop"})]})]}),b.jsxs("div",{className:"flex items-center gap-4 bg-card/50 p-4 rounded-2xl border border-white/5",children:[b.jsx("div",{className:"w-12 h-12 rounded-full bg-[#5865F2]/20 flex items-center justify-center text-[#5865F2]",children:b.jsx(KE,{})}),b.jsxs("div",{children:[b.jsx("h4",{className:"font-semibold",children:"Discord Server"}),b.jsx("a",{href:K0,target:"_blank",rel:"noreferrer",className:"text-muted-foreground hover:text-[#5865F2] transition-colors",children:"discord.gg/UwCsJhKQFz"})]})]})]})]}),b.jsx("div",{className:"bg-gradient-to-b from-card to-background border border-white/10 rounded-3xl p-8 shadow-[0_0_40px_-10px_rgba(168,85,247,0.2)]",children:b.jsxs("form",{onSubmit:a,className:"space-y-4",children:[b.jsxs("div",{className:"grid grid-cols-2 gap-4",children:[b.jsxs("div",{className:"space-y-2",children:[b.jsx("label",{className:"text-sm font-medium",children:"Name"}),b.jsx(cr,{required:!0,placeholder:"John Doe",className:"bg-black/50 border-white/10 focus-visible:ring-primary",value:e.name,onChange:r=>i({...e,name:r.target.value})})]}),b.jsxs("div",{className:"space-y-2",children:[b.jsx("label",{className:"text-sm font-medium",children:"Email"}),b.jsx(cr,{required:!0,type:"email",placeholder:"john@example.com",className:"bg-black/50 border-white/10 focus-visible:ring-primary",value:e.email,onChange:r=>i({...e,email:r.target.value})})]})]}),b.jsxs("div",{className:"space-y-2",children:[b.jsx("label",{className:"text-sm font-medium",children:"Subject"}),b.jsx(cr,{required:!0,placeholder:"How can we help?",className:"bg-black/50 border-white/10 focus-visible:ring-primary",value:e.subject,onChange:r=>i({...e,subject:r.target.value})})]}),b.jsxs("div",{className:"space-y-2",children:[b.jsx("label",{className:"text-sm font-medium",children:"Message"}),b.jsx(FS,{required:!0,placeholder:"Your message here...",className:"min-h-[150px] bg-black/50 border-white/10 focus-visible:ring-primary resize-none",value:e.message,onChange:r=>i({...e,message:r.target.value})})]}),b.jsxs(Qi,{type:"submit",className:"w-full h-12 text-lg gap-2 bg-primary hover:bg-primary/90 mt-4",children:[b.jsx($E,{size:18})," Send Message"]})]})})]}),b.jsxs("div",{className:"max-w-5xl mx-auto mb-24",children:[b.jsxs("div",{className:"text-center mb-10",children:[b.jsx("h2",{className:"text-3xl font-bold mb-4",children:"Our Founder"}),b.jsx("p",{className:"text-muted-foreground",children:"The person behind Mahad's Shop."})]}),b.jsxs("div",{className:"bg-card border border-white/10 rounded-3xl p-8 flex flex-col sm:flex-row items-center gap-8 shadow-[0_0_40px_-15px_rgba(168,85,247,0.3)] hover:border-primary/30 transition-colors",children:[b.jsx("div",{className:"w-28 h-28 rounded-full bg-gradient-to-br from-primary to-accent p-1 shrink-0",children:b.jsx("div",{className:"w-full h-full rounded-full bg-card flex items-center justify-center text-4xl font-black text-primary",children:"M"})}),b.jsxs("div",{className:"flex-1 text-center sm:text-left",children:[b.jsx("h3",{className:"text-2xl font-bold mb-1",children:"Mahad"}),b.jsx("p",{className:"text-primary font-medium mb-4",children:"Owner & Founder"}),b.jsxs("div",{className:"inline-flex flex-col sm:flex-row gap-3",children:[b.jsxs("div",{className:"flex items-center gap-2 bg-black/40 rounded-xl px-4 py-2 border border-white/5",children:[b.jsx(hr,{className:"text-[#5865F2]",size:16}),b.jsx("span",{className:"text-sm text-muted-foreground font-medium",children:"@mahadultra"})]}),b.jsx("div",{className:"flex items-center gap-2 bg-black/40 rounded-xl px-4 py-2 border border-white/5",children:b.jsx("span",{className:"text-xs text-muted-foreground/60 font-mono",children:"ID: 849382093849283948"})})]})]}),b.jsxs("a",{href:K0,target:"_blank",rel:"noreferrer",className:"inline-flex items-center gap-2 bg-[#5865F2] hover:bg-[#4752C4] text-white px-6 py-3 rounded-full font-semibold transition-all hover:scale-105 shrink-0",children:[b.jsx(hr,{size:18}),"Contact"]})]})]}),b.jsx(Ch,{})]})})}const QS=w.forwardRef(({className:e,...i},a)=>b.jsx("div",{ref:a,className:Yt("rounded-xl border bg-card text-card-foreground shadow",e),...i}));QS.displayName="Card";const R4=w.forwardRef(({className:e,...i},a)=>b.jsx("div",{ref:a,className:Yt("flex flex-col space-y-1.5 p-6",e),...i}));R4.displayName="CardHeader";const M4=w.forwardRef(({className:e,...i},a)=>b.jsx("div",{ref:a,className:Yt("font-semibold leading-none tracking-tight",e),...i}));M4.displayName="CardTitle";const O4=w.forwardRef(({className:e,...i},a)=>b.jsx("div",{ref:a,className:Yt("text-sm text-muted-foreground",e),...i}));O4.displayName="CardDescription";const ZS=w.forwardRef(({className:e,...i},a)=>b.jsx("div",{ref:a,className:Yt("p-6 pt-0",e),...i}));ZS.displayName="CardContent";const N4=w.forwardRef(({className:e,...i},a)=>b.jsx("div",{ref:a,className:Yt("flex items-center p-6 pt-0",e),...i}));N4.displayName="CardFooter";function j4(){return b.jsx("div",{className:"min-h-screen w-full flex items-center justify-center bg-gray-50",children:b.jsx(QS,{className:"w-full max-w-md mx-4",children:b.jsxs(ZS,{className:"pt-6",children:[b.jsxs("div",{className:"flex mb-4 gap-2",children:[b.jsx(jE,{className:"h-8 w-8 text-red-500"}),b.jsx("h1",{className:"text-2xl font-bold text-gray-900",children:"404 Page Not Found"})]}),b.jsx("p",{className:"mt-4 text-sm text-gray-600",children:"Did you forget to add the page to the router?"})]})})})}const _4=new w2;function z4(){return b.jsxs(ZA,{children:[b.jsx(Ls,{path:"/",component:J3}),b.jsx(Ls,{path:"/products",component:e4}),b.jsx(Ls,{path:"/tos",component:i4}),b.jsx(Ls,{path:"/faqs",component:C4}),b.jsx(Ls,{path:"/contact",component:D4}),b.jsx(Ls,{component:j4})]})}function V4(){return b.jsx(A2,{client:_4,children:b.jsxs(LR,{children:[b.jsx(ib,{base:"/".replace(/\/$/,""),children:b.jsx(z4,{})}),b.jsx(tD,{})]})})}DA.createRoot(document.getElementById("root")).render(b.jsx(V4,{}));
 
       </script>
-    </body>
+    
+  <script>
+    (function() {
+      // Create page-transition overlay element
+      var overlay = document.createElement('div');
+      overlay.id = 'nav-transition-overlay';
+      document.body.appendChild(overlay);
+
+      function flashTransition() {
+        overlay.classList.add('flash-in');
+        setTimeout(function() {
+          overlay.classList.remove('flash-in');
+        }, 220);
+      }
+
+      // Scroll to top + flash on every React Router navigation
+      var _pushState = history.pushState;
+      history.pushState = function() {
+        _pushState.apply(this, arguments);
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        flashTransition();
+      };
+      var _replaceState = history.replaceState;
+      history.replaceState = function() {
+        _replaceState.apply(this, arguments);
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      };
+      window.addEventListener('popstate', function() {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        flashTransition();
+      });
+
+      // Add ripple class to nav/footer links on click
+      document.addEventListener('click', function(e) {
+        var link = e.target.closest('nav a, footer a');
+        if (!link) return;
+        link.classList.remove('nav-clicked');
+        void link.offsetWidth; // force reflow to restart animation
+        link.classList.add('nav-clicked');
+        link.addEventListener('animationend', function() {
+          link.classList.remove('nav-clicked');
+        }, { once: true });
+      });
+    })();
+  </script>
+  </body>
   </html>
