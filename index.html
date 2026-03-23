@@ -102,6 +102,24 @@
 
 
 
+  /* === FIX 1: Prevent horizontal scroll on all devices === */
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+
+  /* === FIX 2: Floating island at BOTTOM on mobile/tablet, TOP on desktop === */
+  @media (max-width: 1023px) {
+    .fixed.top-4.left-0.right-0.z-50 {
+      top: auto !important;
+      bottom: 16px !important;
+    }
+    /* extra padding so page content is not hidden behind bottom island */
+    body {
+      padding-bottom: 80px;
+    }
+  }
+
   /* === FIX: Mobile nav dropdown opens UPWARD ===*/
   @media (max-width: 1023px) {
     .fixed.top-4.left-0.right-0.z-50 .absolute.top-full {
